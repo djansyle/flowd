@@ -1,0 +1,24 @@
+{
+  "name": "flowd",
+  "version": "1.0.0",
+  "description": "FlowD Framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/djansyle/flowd.git"
+  },
+  "keywords": [
+    "framework",
+    "rest",
+    "api"
+  ],
+  "author": "djansyle",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/djansyle/flowd/issues"
+  },
+  "homepage": "https://github.com/djansyle/flowd#readme"
+}
