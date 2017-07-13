@@ -3,10 +3,13 @@ const assert = require('assert');
 class Framework {
   constructor() {
     this.servers = [];
+    this.bootloaders = [];
+
     ['SIGINT', 'SIGTERM', 'SIGHUP', 'SIGUSR2']
       .forEach(signal => process.on(signal, () => {
-        this.stop();
-      }))
+        this.stop()
+          .then(() => process.exit());
+      }));
   }
 
   addServer(instance) {
@@ -16,12 +19,17 @@ class Framework {
     this.servers.push(instance);
   }
 
+  setBootloaders(loaders) {
+    this.bootloaders = loaders;
+  }
+
   start() {
-    this.servers.forEach(server => server.start());
+    return Promise.all(this.bootloaders)
+      .then(() => Promise.all(this.servers.map(server => server.start())));
   }
 
   stop() {
-    this.servers.forEach(server => server.stop());
+    return Promise.all(this.servers.map(server => server.stop()));
   }
 
 }
